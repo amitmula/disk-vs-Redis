@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.fumigo.benchmarking</groupId>
+  <artifactId>redis-benchmarking</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+	   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	   <metrics.version>3.0.1</metrics.version>
+  </properties>
+  
+  <dependencies>
+		<!-- yammer metrics-core dependency -->
+	    <dependency>
+	        <groupId>com.codahale.metrics</groupId>
+	        <artifactId>metrics-core</artifactId>
+	        <version>${metrics.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>com.codahale.metrics</groupId>
+	        <artifactId>metrics-graphite</artifactId>
+	        <version>${metrics.version}</version>
+	    </dependency>
+	    
+		<!-- redis appender dependency -->
+		<dependency>
+			<groupId>com.cwbase</groupId>
+			<artifactId>logback-redis-appender</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-slf4j_2.10</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>ch.qos.logback</groupId>
+		  <artifactId>logback-classic</artifactId>
+		  <version>1.0.7</version>
+		</dependency>
+	</dependencies>
+  
+</project>

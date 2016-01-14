@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="LOGSTASH" class="com.cwbase.logback.RedisAppender">
+		<source>authz-pdp</source>
+		<sourcePath>authz-pdp</sourcePath>
+		<type>fumigo</type>
+		<tags>authz-pdp</tags>
+		<host>${REDIS_HOST:-127.0.0.1}</host>
+		<port>6379</port>
+		<key>logstash</key>
+	</appender>
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+		  <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+		</encoder>
+    </appender>
+    
+	
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>logs/logs.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!--
+	<appender name="FILE_DEBUG" class="ch.qos.logback.core.FileAppender">
+		<file>logs/http-endPoint.debug.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	-->
+	<root level="all">
+		<appender-ref ref="${LOG_APPENDER:-STDOUT}"/>
+	</root>
+	<!--
+	<root level="ERROR">
+		<appender-ref ref="FILE_ERROR" />
+	</root>
+
+	<root level="DEBUG">
+		<appender-ref ref="FILE_DEBUG" />
+	</root>
+	-->
+</configuration>
